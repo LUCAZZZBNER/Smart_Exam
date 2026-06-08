@@ -27,6 +27,14 @@ function requireUser(req, res, next) {
   next();
 }
 
+function requireStaff(req, res, next) {
+  const user = currentUser(req);
+  if (!user) return res.status(401).json({ message: "请先登录" });
+  if (!["admin", "teacher"].includes(user.role)) return res.status(403).json({ message: "需要管理员或老师权限" });
+  req.user = user;
+  next();
+}
+
 function requireAdmin(req, res, next) {
   const user = currentUser(req);
   if (!user) return res.status(401).json({ message: "请先登录" });
@@ -38,5 +46,6 @@ function requireAdmin(req, res, next) {
 module.exports = {
   encodeToken,
   requireUser,
+  requireStaff,
   requireAdmin
 };

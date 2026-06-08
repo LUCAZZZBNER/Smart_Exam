@@ -23,25 +23,14 @@ const answeredCount = computed(() => Object.values(answers).filter(Boolean).leng
 const questionCount = computed(() => exam.value?.questions?.length || 0);
 
 function saveDraft() {
-  localStorage.setItem(
-    draftKey,
-    JSON.stringify({
-      startedAt: startedAt.value,
-      focusWarnings: focusWarnings.value,
-      answers
-    })
-  );
+  localStorage.setItem(draftKey, JSON.stringify({ startedAt: startedAt.value, focusWarnings: focusWarnings.value, answers }));
 }
 
 function restoreDraft() {
   const raw = localStorage.getItem(draftKey);
   if (!raw) return;
   try {
-    const draft = JSON.parse(raw) as {
-      startedAt?: string;
-      focusWarnings?: number;
-      answers?: Record<string, string>;
-    };
+    const draft = JSON.parse(raw) as { startedAt?: string; focusWarnings?: number; answers?: Record<string, string> };
     Object.assign(answers, draft.answers || {});
     startedAt.value = draft.startedAt || startedAt.value;
     focusWarnings.value = Number(draft.focusWarnings || 0);
@@ -56,6 +45,8 @@ async function load() {
   try {
     exam.value = await getExamApi(examId);
     restoreDraft();
+  } catch {
+    router.replace("/student/exams");
   } finally {
     loading.value = false;
   }
@@ -126,6 +117,7 @@ onBeforeUnmount(() => {
             <div>
               <h2>{{ exam.title }}</h2>
               <p>{{ exam.description }}</p>
+              <p>所属班级：{{ exam.classNames?.join("、") || "-" }}</p>
             </div>
             <el-tag>{{ exam.totalScore }} 分</el-tag>
           </div>

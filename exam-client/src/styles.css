@@ -86,6 +86,35 @@ a {
   margin-top: 16px;
 }
 
+.toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.compact-title {
+  margin: 24px 0 12px;
+  font-size: 16px;
+}
+
+.muted-text {
+  margin: -4px 0 12px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.stacked-table {
+  margin-bottom: 8px;
+}
+
 .shell {
   min-height: 100vh;
 }
@@ -277,9 +306,24 @@ a {
   gap: 16px;
 }
 
+.class-exam-list,
+.class-band {
+  display: grid;
+  gap: 18px;
+}
+
+.class-band h3 {
+  margin: 0;
+}
+
 .exam-card {
   display: grid;
   gap: 18px;
+}
+
+.redo-box {
+  display: grid;
+  gap: 8px;
 }
 
 .exam-card h3 {
@@ -365,7 +409,8 @@ a {
 
   .option-list,
   .question-meta,
-  .metric-row {
+  .metric-row,
+  .filter-row {
     grid-template-columns: 1fr;
   }
 }

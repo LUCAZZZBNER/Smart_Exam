@@ -1,11 +1,26 @@
-export type Role = "admin" | "student";
+export type Role = "admin" | "teacher" | "student";
 export type QuestionType = "choice" | "judgement";
+
+export interface ClassInfo {
+  id: string;
+  name: string;
+  teacherId: string;
+  teacherName?: string;
+  studentCount?: number;
+  createdAt?: string;
+}
 
 export interface User {
   id: string;
   username: string;
   name: string;
   role: Role;
+  classIds?: string[];
+  classes?: ClassInfo[];
+  teacherId?: string;
+  teacherName?: string;
+  adminId?: string;
+  createdAt?: string;
 }
 
 export interface Question {
@@ -22,6 +37,9 @@ export interface Exam {
   id: string;
   title: string;
   description: string;
+  classIds?: string[];
+  classNames?: string[];
+  classes?: ClassInfo[];
   duration: number;
   totalScore: number;
   published: boolean;
@@ -29,6 +47,9 @@ export interface Exam {
   questionCount?: number;
   questions?: Question[];
   createdAt?: string;
+  status?: "available" | "completed" | "redo_approved";
+  latestSubmissionId?: string;
+  redoRequestStatus?: "" | "pending" | "approved" | "rejected";
 }
 
 export interface SubmissionDetail {
@@ -56,4 +77,33 @@ export interface Submission {
   startedAt: string | null;
   submittedAt: string;
   details: SubmissionDetail[];
+  classIds?: string[];
+  classNames?: string[];
+  teacherIds?: string[];
+  teacherNames?: string[];
+  attemptNo?: number;
+}
+
+export interface RedoRequest {
+  id: string;
+  userId: string;
+  studentName: string;
+  examId: string;
+  examTitle: string;
+  classIds: string[];
+  classNames: string[];
+  reason: string;
+  status: "pending" | "approved" | "rejected" | "used";
+  createdAt: string;
+}
+
+export interface GradeSummary {
+  classId: string;
+  className: string;
+  examId: string;
+  examTitle: string;
+  count: number;
+  average: number;
+  highest: number;
+  lowest: number;
 }

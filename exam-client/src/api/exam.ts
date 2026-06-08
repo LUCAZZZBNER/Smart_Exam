@@ -1,5 +1,5 @@
 import { http } from "./http";
-import type { Exam, Submission, User } from "../types/exam";
+import type { ClassInfo, Exam, GradeSummary, RedoRequest, Submission, User } from "../types/exam";
 
 export async function loginApi(payload: { username: string; password: string }) {
   const { data } = await http.post<{ token: string; user: User }>("/login", payload);
@@ -56,8 +56,57 @@ export async function deleteExamApi(id: string) {
 }
 
 export async function listGradesApi() {
-  const { data } = await http.get<Submission[]>("/admin/grades");
+  const { data } = await http.get<{ rows: Submission[]; summary: GradeSummary[]; redoRequests: RedoRequest[] }>("/admin/grades");
   return data;
+}
+
+export async function requestRedoApi(examId: string, reason: string) {
+  const { data } = await http.post<RedoRequest>(`/exam/${examId}/redo-request`, { reason });
+  return data;
+}
+
+export async function handleRedoRequestApi(id: string, status: "approved" | "rejected") {
+  const { data } = await http.patch<RedoRequest>(`/admin/redo-requests/${id}`, { status });
+  return data;
+}
+
+export async function listUsersApi() {
+  const { data } = await http.get<User[]>("/admin/users");
+  return data;
+}
+
+export async function createUserApi(payload: {
+  username: string;
+  password: string;
+  name: string;
+  role: "teacher" | "student";
+  classIds?: string[];
+}) {
+  const { data } = await http.post<User>("/admin/users", payload);
+  return data;
+}
+
+export async function deleteUserApi(id: string) {
+  await http.delete(`/admin/users/${id}`);
+}
+
+export async function listClassesApi() {
+  const { data } = await http.get<ClassInfo[]>("/admin/classes");
+  return data;
+}
+
+export async function createClassApi(payload: { name: string; teacherId?: string }) {
+  const { data } = await http.post<ClassInfo>("/admin/classes", payload);
+  return data;
+}
+
+export async function updateClassApi(id: string, payload: { name?: string; teacherId?: string; studentIds?: string[] }) {
+  const { data } = await http.put<ClassInfo>(`/admin/classes/${id}`, payload);
+  return data;
+}
+
+export async function deleteClassApi(id: string) {
+  await http.delete(`/admin/classes/${id}`);
 }
 
 export async function importQuestionsApi(file: File) {

@@ -1,26 +1,82 @@
 [
   {
     "type": "choice",
-    "title": "Vue Router 中用于声明页面路径和组件映射的配置通常称为什么？",
-    "options": "routes|stores|plugins|directives",
-    "answer": "routes",
-    "score": 20,
-    "explanation": "Vue Router 通过 routes 数组声明路径与组件之间的映射关系。"
+    "title": "Vue 3 中用于组合逻辑复用的核心 API 是什么？",
+    "options": "Composition API|Options API|DOM API|Fetch API",
+    "answer": "Composition API",
+    "score": 10,
+    "explanation": "Composition API 通过 setup、ref、computed 等能力组织可复用逻辑。"
   },
   {
     "type": "judgement",
-    "title": "考试系统中，前端不应该在获取试卷接口中拿到正确答案。",
+    "title": "Pinia 可以用于跨组件共享状态。",
     "options": "正确|错误",
     "answer": "正确",
-    "score": 20,
-    "explanation": "正确答案应保存在后端，提交后由后端自动判分。"
+    "score": 10,
+    "explanation": "Pinia 是 Vue 官方推荐的状态管理库。"
   },
   {
     "type": "choice",
-    "title": "Pinia 中定义 store 常用的函数是？",
-    "options": "defineStore|createRouter|createApp|defineConfig",
-    "answer": "defineStore",
-    "score": 20,
-    "explanation": "Pinia 使用 defineStore 定义状态、计算属性和 actions。"
+    "title": "RESTful API 中通常用于创建资源的方法是？",
+    "options": "GET|POST|PATCH|DELETE",
+    "answer": "POST",
+    "score": 10,
+    "explanation": "POST 常用于创建资源。"
+  },
+  {
+    "type": "judgement",
+    "title": "localStorage 可以用于在刷新页面后保留少量草稿数据。",
+    "options": "正确|错误",
+    "answer": "正确",
+    "score": 10,
+    "explanation": "localStorage 适合保存少量非敏感草稿。"
+  },
+  {
+    "type": "choice",
+    "title": "Vue Router 中用于定义路径和组件映射的配置通常叫作什么？",
+    "options": "routes|stores|plugins|directives",
+    "answer": "routes",
+    "score": 10,
+    "explanation": "Vue Router 通过 routes 数组声明页面路径和组件映射。"
+  },
+  {
+    "type": "choice",
+    "title": "Axios 拦截器常用于处理什么场景？",
+    "options": "统一携带 Token|修改浏览器标题|压缩图片|创建路由",
+    "answer": "统一携带 Token",
+    "score": 10,
+    "explanation": "请求拦截器常用于统一添加 Authorization Token。"
+  },
+  {
+    "type": "judgement",
+    "title": "考试接口返回试卷时，不应该把正确答案一起返回给考生端。",
+    "options": "正确|错误",
+    "answer": "正确",
+    "score": 10,
+    "explanation": "正确答案应保存在后端，避免前端泄题。"
+  },
+  {
+    "type": "choice",
+    "title": "Vite 开发服务器默认主要用于什么阶段？",
+    "options": "本地开发调试|数据库备份|服务器运维|图片识别",
+    "answer": "本地开发调试",
+    "score": 10,
+    "explanation": "Vite 提供快速的本地开发服务器和构建能力。"
+  },
+  {
+    "type": "choice",
+    "title": "TypeScript 相比 JavaScript 的主要优势之一是？",
+    "options": "静态类型检查|自动部署服务器|替代 HTML|禁止使用组件",
+    "answer": "静态类型检查",
+    "score": 10,
+    "explanation": "TypeScript 通过类型系统帮助提前发现错误。"
+  },
+  {
+    "type": "judgement",
+    "title": "响应式布局的目标之一是让页面同时适配 PC 和移动端。",
+    "options": "正确|错误",
+    "answer": "正确",
+    "score": 10,
+    "explanation": "响应式布局会根据屏幕尺寸调整排版。"
   }
 ]

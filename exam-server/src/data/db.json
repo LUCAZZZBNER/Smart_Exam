@@ -5,31 +5,109 @@
       "username": "admin",
       "password": "admin123",
       "name": "管理员",
-      "role": "admin"
+      "role": "admin",
+      "adminId": "",
+      "createdAt": "2026-06-01T08:00:00.000Z"
+    },
+    {
+      "id": "u-teacher",
+      "username": "teacher",
+      "password": "teacher123",
+      "name": "默认老师",
+      "role": "teacher",
+      "adminId": "u-admin",
+      "createdAt": "2026-06-01T08:00:00.000Z"
     },
     {
       "id": "u-student",
       "username": "student",
       "password": "student123",
       "name": "张同学",
-      "role": "student"
+      "role": "student",
+      "classIds": [
+        "class-default"
+      ],
+      "createdAt": "2026-06-01T08:00:00.000Z"
+    }
+  ],
+  "classes": [
+    {
+      "id": "class-default",
+      "name": "默认班级",
+      "teacherId": "u-teacher",
+      "createdAt": "2026-06-01T08:00:00.000Z"
     }
   ],
   "exams": [
     {
-      "id": "exam-mq4wn06i-mab2ny",
-      "title": "还是随便",
-      "description": "132",
+      "id": "exam-mq51f67p-b9mtmv",
+      "title": "Exam_for_test",
+      "description": "using json",
+      "classIds": [
+        "class-default"
+      ],
       "duration": 30,
-      "totalScore": 60,
+      "totalScore": 100,
       "published": true,
       "randomize": true,
-      "createdAt": "2026-06-08T07:43:56.586Z",
+      "createdAt": "2026-06-08T09:57:49.237Z",
       "questions": [
         {
-          "id": "q1-mq4wmcj1-4i8w2w",
+          "id": "q1-mq51eqm0-n6obb3",
           "type": "choice",
-          "title": "Vue Router 中用于声明页面路径和组件映射的配置通常称为什么？",
+          "title": "Vue 3 中用于组合逻辑复用的核心 API 是什么？",
+          "options": [
+            "Composition API",
+            "Options API",
+            "DOM API",
+            "Fetch API"
+          ],
+          "answer": "Composition API",
+          "score": 10,
+          "explanation": "Composition API 通过 setup、ref、computed 等能力组织可复用逻辑。"
+        },
+        {
+          "id": "q2-mq51eqm0-qv50gz",
+          "type": "judgement",
+          "title": "Pinia 可以用于跨组件共享状态。",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": "正确",
+          "score": 10,
+          "explanation": "Pinia 是 Vue 官方推荐的状态管理库。"
+        },
+        {
+          "id": "q3-mq51eqm0-2lj9qb",
+          "type": "choice",
+          "title": "RESTful API 中通常用于创建资源的方法是？",
+          "options": [
+            "GET",
+            "POST",
+            "PATCH",
+            "DELETE"
+          ],
+          "answer": "POST",
+          "score": 10,
+          "explanation": "POST 常用于创建资源。"
+        },
+        {
+          "id": "q4-mq51eqm0-w002z5",
+          "type": "judgement",
+          "title": "localStorage 可以用于在刷新页面后保留少量草稿数据。",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": "正确",
+          "score": 10,
+          "explanation": "localStorage 适合保存少量非敏感草稿。"
+        },
+        {
+          "id": "q5-mq51eqm0-si5stc",
+          "type": "choice",
+          "title": "Vue Router 中用于定义路径和组件映射的配置通常叫作什么？",
           "options": [
             "routes",
             "stores",
@@ -37,80 +115,85 @@
             "directives"
           ],
           "answer": "routes",
-          "score": 20,
-          "explanation": "Vue Router 通过 routes 数组声明路径与组件之间的映射关系。"
+          "score": 10,
+          "explanation": "Vue Router 通过 routes 数组声明页面路径和组件映射。"
         },
         {
-          "id": "q2-mq4wmcj1-f8jom9",
+          "id": "q6-mq51eqm0-3kgalm",
+          "type": "choice",
+          "title": "Axios 拦截器常用于处理什么场景？",
+          "options": [
+            "统一携带 Token",
+            "修改浏览器标题",
+            "压缩图片",
+            "创建路由"
+          ],
+          "answer": "统一携带 Token",
+          "score": 10,
+          "explanation": "请求拦截器常用于统一添加 Authorization Token。"
+        },
+        {
+          "id": "q7-mq51eqm0-q1rhn0",
           "type": "judgement",
-          "title": "考试系统中，前端不应该在获取试卷接口中拿到正确答案。",
+          "title": "考试接口返回试卷时，不应该把正确答案一起返回给考生端。",
           "options": [
             "正确",
             "错误"
           ],
           "answer": "正确",
-          "score": 20,
-          "explanation": "正确答案应保存在后端，提交后由后端自动判分。"
+          "score": 10,
+          "explanation": "正确答案应保存在后端，避免前端泄题。"
         },
         {
-          "id": "q3-mq4wmcj1-hubej5",
+          "id": "q8-mq51eqm0-vknzci",
           "type": "choice",
-          "title": "Pinia 中定义 store 常用的函数是？",
+          "title": "Vite 开发服务器默认主要用于什么阶段？",
           "options": [
-            "defineStore",
-            "createRouter",
-            "createApp",
-            "defineConfig"
+            "本地开发调试",
+            "数据库备份",
+            "服务器运维",
+            "图片识别"
           ],
-          "answer": "defineStore",
-          "score": 20,
-          "explanation": "Pinia 使用 defineStore 定义状态、计算属性和 actions。"
-        }
-      ]
-    },
-    {
-      "id": "exam-mq4wlz0p-q1g09t",
-      "title": "随便",
-      "description": "whatever",
-      "duration": 23,
-      "totalScore": 100,
-      "published": true,
-      "randomize": true,
-      "createdAt": "2026-06-08T07:43:08.425Z",
-      "questions": [
+          "answer": "本地开发调试",
+          "score": 10,
+          "explanation": "Vite 提供快速的本地开发服务器和构建能力。"
+        },
         {
-          "id": "question-mq4wk8rc-z1u0t7",
+          "id": "q9-mq51eqm0-j5m36w",
+          "type": "choice",
+          "title": "TypeScript 相比 JavaScript 的主要优势之一是？",
+          "options": [
+            "静态类型检查",
+            "自动部署服务器",
+            "替代 HTML",
+            "禁止使用组件"
+          ],
+          "answer": "静态类型检查",
+          "score": 10,
+          "explanation": "TypeScript 通过类型系统帮助提前发现错误。"
+        },
+        {
+          "id": "q10-mq51eqm0-bq4x3g",
           "type": "judgement",
-          "title": "我是人",
+          "title": "响应式布局的目标之一是让页面同时适配 PC 和移动端。",
           "options": [
             "正确",
             "错误"
           ],
           "answer": "正确",
-          "score": 50,
-          "explanation": "自己想"
-        },
-        {
-          "id": "question-mq4wlbn7-42ym6m",
-          "type": "choice",
-          "title": "我是谁",
-          "options": [
-            "张德文",
-            "李锐",
-            "肇始于",
-            "云纹想"
-          ],
-          "answer": "张德文",
-          "score": 50,
-          "explanation": "不知道"
+          "score": 10,
+          "explanation": "响应式布局会根据屏幕尺寸调整排版。"
         }
       ]
     },
     {
       "id": "exam-frontend",
-      "title": "前端开发基础测验",
-      "description": "覆盖 Vue、浏览器与工程化基础知识。",
-      "duration": 30,
+      "title": "前端开发综合测验",
+      "description": "覆盖 Vue、路由、状态管理、接口、安全和工程化基础知识。",
+      "classIds": [
+        "class-default"
+      ],
+      "duration": 40,
       "totalScore": 100,
       "published": true,
       "randomize": true,
@@ -127,7 +210,7 @@
             "Fetch API"
           ],
           "answer": "Composition API",
-          "score": 25,
+          "score": 10,
           "explanation": "Composition API 通过 setup、ref、computed 等能力组织可复用逻辑。"
         },
         {
@@ -139,7 +222,7 @@
             "错误"
           ],
           "answer": "正确",
-          "score": 25,
+          "score": 10,
           "explanation": "Pinia 是 Vue 官方推荐的状态管理库，适合保存登录态、考试草稿等共享状态。"
         },
         {
@@ -153,7 +236,7 @@
             "DELETE"
           ],
           "answer": "POST",
-          "score": 25,
+          "score": 10,
           "explanation": "POST 常用于创建资源，GET 获取资源，PATCH 更新资源，DELETE 删除资源。"
         },
         {
@@ -165,534 +248,92 @@
             "错误"
           ],
           "answer": "正确",
-          "score": 25,
+          "score": 10,
           "explanation": "localStorage 是浏览器本地持久化能力，适合保存少量非敏感草稿。"
+        },
+        {
+          "id": "q5",
+          "type": "choice",
+          "title": "Vue Router 中用于定义路径和组件映射的配置通常叫作什么？",
+          "options": [
+            "routes",
+            "stores",
+            "plugins",
+            "directives"
+          ],
+          "answer": "routes",
+          "score": 10,
+          "explanation": "Vue Router 通过 routes 数组声明页面路径和组件之间的映射关系。"
+        },
+        {
+          "id": "q6",
+          "type": "choice",
+          "title": "Axios 拦截器常用于处理什么场景？",
+          "options": [
+            "统一携带 Token",
+            "修改浏览器标题",
+            "压缩图片",
+            "创建路由"
+          ],
+          "answer": "统一携带 Token",
+          "score": 10,
+          "explanation": "请求拦截器常用于统一添加 Authorization Token，响应拦截器常用于统一处理错误。"
+        },
+        {
+          "id": "q7",
+          "type": "judgement",
+          "title": "考试接口返回试卷时，不应该把正确答案一起返回给考生端。",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": "正确",
+          "score": 10,
+          "explanation": "正确答案应保存在后端，提交答卷后由后端判分，避免前端泄题。"
+        },
+        {
+          "id": "q8",
+          "type": "choice",
+          "title": "Vite 开发服务器默认主要用于什么阶段？",
+          "options": [
+            "本地开发调试",
+            "数据库备份",
+            "服务器运维",
+            "图片识别"
+          ],
+          "answer": "本地开发调试",
+          "score": 10,
+          "explanation": "Vite 提供快速的本地开发服务器和构建能力。"
+        },
+        {
+          "id": "q9",
+          "type": "choice",
+          "title": "TypeScript 相比 JavaScript 的主要优势之一是？",
+          "options": [
+            "静态类型检查",
+            "自动部署服务器",
+            "替代 HTML",
+            "禁止使用组件"
+          ],
+          "answer": "静态类型检查",
+          "score": 10,
+          "explanation": "TypeScript 通过类型系统帮助提前发现变量、接口和函数调用中的错误。"
+        },
+        {
+          "id": "q10",
+          "type": "judgement",
+          "title": "响应式布局的目标之一是让页面同时适配 PC 和移动端。",
+          "options": [
+            "正确",
+            "错误"
+          ],
+          "answer": "正确",
+          "score": 10,
+          "explanation": "响应式布局会根据屏幕尺寸调整排版，使页面在不同设备上都可用。"
         }
       ]
     }
   ],
-  "submissions": [
-    {
-      "id": "submission-mq4wnrrw-bjdclb",
-      "examId": "exam-mq4wn06i-mab2ny",
-      "examTitle": "还是随便",
-      "userId": "u-student",
-      "userName": "张同学",
-      "answers": {
-        "q1-mq4wmcj1-4i8w2w": "directives",
-        "q3-mq4wmcj1-hubej5": "defineConfig",
-        "q2-mq4wmcj1-f8jom9": "错误"
-      },
-      "score": 0,
-      "totalScore": 60,
-      "focusWarnings": 0,
-      "startedAt": "2026-06-08T07:44:27.278Z",
-      "submittedAt": "2026-06-08T07:44:32.348Z",
-      "details": [
-        {
-          "questionId": "q1-mq4wmcj1-4i8w2w",
-          "title": "Vue Router 中用于声明页面路径和组件映射的配置通常称为什么？",
-          "type": "choice",
-          "options": [
-            "routes",
-            "stores",
-            "plugins",
-            "directives"
-          ],
-          "userAnswer": "directives",
-          "answer": "routes",
-          "correct": false,
-          "score": 0,
-          "questionScore": 20,
-          "explanation": "Vue Router 通过 routes 数组声明路径与组件之间的映射关系。"
-        },
-        {
-          "questionId": "q2-mq4wmcj1-f8jom9",
-          "title": "考试系统中，前端不应该在获取试卷接口中拿到正确答案。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "错误",
-          "answer": "正确",
-          "correct": false,
-          "score": 0,
-          "questionScore": 20,
-          "explanation": "正确答案应保存在后端，提交后由后端自动判分。"
-        },
-        {
-          "questionId": "q3-mq4wmcj1-hubej5",
-          "title": "Pinia 中定义 store 常用的函数是？",
-          "type": "choice",
-          "options": [
-            "defineStore",
-            "createRouter",
-            "createApp",
-            "defineConfig"
-          ],
-          "userAnswer": "defineConfig",
-          "answer": "defineStore",
-          "correct": false,
-          "score": 0,
-          "questionScore": 20,
-          "explanation": "Pinia 使用 defineStore 定义状态、计算属性和 actions。"
-        }
-      ]
-    },
-    {
-      "id": "submission-mq4wnkbs-3bl25e",
-      "examId": "exam-mq4wn06i-mab2ny",
-      "examTitle": "还是随便",
-      "userId": "u-student",
-      "userName": "张同学",
-      "answers": {
-        "q3-mq4wmcj1-hubej5": "defineStore",
-        "q2-mq4wmcj1-f8jom9": "正确",
-        "q1-mq4wmcj1-4i8w2w": "routes"
-      },
-      "score": 60,
-      "totalScore": 60,
-      "focusWarnings": 0,
-      "startedAt": "2026-06-08T07:44:15.756Z",
-      "submittedAt": "2026-06-08T07:44:22.696Z",
-      "details": [
-        {
-          "questionId": "q1-mq4wmcj1-4i8w2w",
-          "title": "Vue Router 中用于声明页面路径和组件映射的配置通常称为什么？",
-          "type": "choice",
-          "options": [
-            "routes",
-            "stores",
-            "plugins",
-            "directives"
-          ],
-          "userAnswer": "routes",
-          "answer": "routes",
-          "correct": true,
-          "score": 20,
-          "questionScore": 20,
-          "explanation": "Vue Router 通过 routes 数组声明路径与组件之间的映射关系。"
-        },
-        {
-          "questionId": "q2-mq4wmcj1-f8jom9",
-          "title": "考试系统中，前端不应该在获取试卷接口中拿到正确答案。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "正确",
-          "answer": "正确",
-          "correct": true,
-          "score": 20,
-          "questionScore": 20,
-          "explanation": "正确答案应保存在后端，提交后由后端自动判分。"
-        },
-        {
-          "questionId": "q3-mq4wmcj1-hubej5",
-          "title": "Pinia 中定义 store 常用的函数是？",
-          "type": "choice",
-          "options": [
-            "defineStore",
-            "createRouter",
-            "createApp",
-            "defineConfig"
-          ],
-          "userAnswer": "defineStore",
-          "answer": "defineStore",
-          "correct": true,
-          "score": 20,
-          "questionScore": 20,
-          "explanation": "Pinia 使用 defineStore 定义状态、计算属性和 actions。"
-        }
-      ]
-    },
-    {
-      "id": "submission-mq4wncge-3o90n2",
-      "examId": "exam-mq4wlz0p-q1g09t",
-      "examTitle": "随便",
-      "userId": "u-student",
-      "userName": "张同学",
-      "answers": {
-        "question-mq4wlbn7-42ym6m": "张德文",
-        "question-mq4wk8rc-z1u0t7": "正确"
-      },
-      "score": 100,
-      "totalScore": 100,
-      "focusWarnings": 0,
-      "startedAt": "2026-06-08T07:44:06.063Z",
-      "submittedAt": "2026-06-08T07:44:12.494Z",
-      "details": [
-        {
-          "questionId": "question-mq4wk8rc-z1u0t7",
-          "title": "我是人",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "正确",
-          "answer": "正确",
-          "correct": true,
-          "score": 50,
-          "questionScore": 50,
-          "explanation": "自己想"
-        },
-        {
-          "questionId": "question-mq4wlbn7-42ym6m",
-          "title": "我是谁",
-          "type": "choice",
-          "options": [
-            "张德文",
-            "李锐",
-            "肇始于",
-            "云纹想"
-          ],
-          "userAnswer": "张德文",
-          "answer": "张德文",
-          "correct": true,
-          "score": 50,
-          "questionScore": 50,
-          "explanation": "不知道"
-        }
-      ]
-    },
-    {
-      "id": "submission-mq4wjds5-01f8a4",
-      "examId": "exam-frontend",
-      "examTitle": "前端开发基础测验",
-      "userId": "u-student",
-      "userName": "张同学",
-      "answers": {
-        "q2": "正确",
-        "q3": "POST",
-        "q1": "Composition API",
-        "q4": "正确"
-      },
-      "score": 100,
-      "totalScore": 100,
-      "focusWarnings": 0,
-      "startedAt": "2026-06-08T07:41:00.447Z",
-      "submittedAt": "2026-06-08T07:41:07.589Z",
-      "details": [
-        {
-          "questionId": "q1",
-          "title": "Vue 3 中用于组合逻辑复用的核心 API 是什么？",
-          "type": "choice",
-          "options": [
-            "Composition API",
-            "Options API",
-            "DOM API",
-            "Fetch API"
-          ],
-          "userAnswer": "Composition API",
-          "answer": "Composition API",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "Composition API 通过 setup、ref、computed 等能力组织可复用逻辑。"
-        },
-        {
-          "questionId": "q2",
-          "title": "Pinia 可以用于跨组件共享状态。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "正确",
-          "answer": "正确",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "Pinia 是 Vue 官方推荐的状态管理库，适合保存登录态、考试草稿等共享状态。"
-        },
-        {
-          "questionId": "q3",
-          "title": "RESTful API 中通常用于创建资源的方法是？",
-          "type": "choice",
-          "options": [
-            "GET",
-            "POST",
-            "PATCH",
-            "DELETE"
-          ],
-          "userAnswer": "POST",
-          "answer": "POST",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "POST 常用于创建资源，GET 获取资源，PATCH 更新资源，DELETE 删除资源。"
-        },
-        {
-          "questionId": "q4",
-          "title": "localStorage 可以用于在刷新页面后保留少量草稿数据。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "正确",
-          "answer": "正确",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "localStorage 是浏览器本地持久化能力，适合保存少量非敏感草稿。"
-        }
-      ]
-    },
-    {
-      "id": "submission-mq4wj2yz-ro6eku",
-      "examId": "exam-frontend",
-      "examTitle": "前端开发基础测验",
-      "userId": "u-student",
-      "userName": "张同学",
-      "answers": {
-        "q1": "Options API",
-        "q4": "错误",
-        "q2": "错误",
-        "q3": "GET"
-      },
-      "score": 0,
-      "totalScore": 100,
-      "focusWarnings": 2,
-      "startedAt": "2026-06-08T07:40:38.789Z",
-      "submittedAt": "2026-06-08T07:40:53.579Z",
-      "details": [
-        {
-          "questionId": "q1",
-          "title": "Vue 3 中用于组合逻辑复用的核心 API 是什么？",
-          "type": "choice",
-          "options": [
-            "Composition API",
-            "Options API",
-            "DOM API",
-            "Fetch API"
-          ],
-          "userAnswer": "Options API",
-          "answer": "Composition API",
-          "correct": false,
-          "score": 0,
-          "questionScore": 25,
-          "explanation": "Composition API 通过 setup、ref、computed 等能力组织可复用逻辑。"
-        },
-        {
-          "questionId": "q2",
-          "title": "Pinia 可以用于跨组件共享状态。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "错误",
-          "answer": "正确",
-          "correct": false,
-          "score": 0,
-          "questionScore": 25,
-          "explanation": "Pinia 是 Vue 官方推荐的状态管理库，适合保存登录态、考试草稿等共享状态。"
-        },
-        {
-          "questionId": "q3",
-          "title": "RESTful API 中通常用于创建资源的方法是？",
-          "type": "choice",
-          "options": [
-            "GET",
-            "POST",
-            "PATCH",
-            "DELETE"
-          ],
-          "userAnswer": "GET",
-          "answer": "POST",
-          "correct": false,
-          "score": 0,
-          "questionScore": 25,
-          "explanation": "POST 常用于创建资源，GET 获取资源，PATCH 更新资源，DELETE 删除资源。"
-        },
-        {
-          "questionId": "q4",
-          "title": "localStorage 可以用于在刷新页面后保留少量草稿数据。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "错误",
-          "answer": "正确",
-          "correct": false,
-          "score": 0,
-          "questionScore": 25,
-          "explanation": "localStorage 是浏览器本地持久化能力，适合保存少量非敏感草稿。"
-        }
-      ]
-    },
-    {
-      "id": "submission-mq4wdzn7-la29xx",
-      "examId": "exam-frontend",
-      "examTitle": "前端开发基础测验",
-      "userId": "u-student",
-      "userName": "张同学",
-      "answers": {
-        "q4": "正确",
-        "q2": "正确",
-        "q3": "POST",
-        "q1": "Composition API"
-      },
-      "score": 100,
-      "totalScore": 100,
-      "focusWarnings": 0,
-      "startedAt": "2026-06-08T07:36:49.752Z",
-      "submittedAt": "2026-06-08T07:36:55.988Z",
-      "details": [
-        {
-          "questionId": "q1",
-          "title": "Vue 3 中用于组合逻辑复用的核心 API 是什么？",
-          "type": "choice",
-          "options": [
-            "Composition API",
-            "Options API",
-            "DOM API",
-            "Fetch API"
-          ],
-          "userAnswer": "Composition API",
-          "answer": "Composition API",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "Composition API 通过 setup、ref、computed 等能力组织可复用逻辑。"
-        },
-        {
-          "questionId": "q2",
-          "title": "Pinia 可以用于跨组件共享状态。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "正确",
-          "answer": "正确",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "Pinia 是 Vue 官方推荐的状态管理库，适合保存登录态、考试草稿等共享状态。"
-        },
-        {
-          "questionId": "q3",
-          "title": "RESTful API 中通常用于创建资源的方法是？",
-          "type": "choice",
-          "options": [
-            "GET",
-            "POST",
-            "PATCH",
-            "DELETE"
-          ],
-          "userAnswer": "POST",
-          "answer": "POST",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "POST 常用于创建资源，GET 获取资源，PATCH 更新资源，DELETE 删除资源。"
-        },
-        {
-          "questionId": "q4",
-          "title": "localStorage 可以用于在刷新页面后保留少量草稿数据。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "正确",
-          "answer": "正确",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "localStorage 是浏览器本地持久化能力，适合保存少量非敏感草稿。"
-        }
-      ]
-    },
-    {
-      "id": "submission-mq4wdj9z-x5v23x",
-      "examId": "exam-frontend",
-      "examTitle": "前端开发基础测验",
-      "userId": "u-student",
-      "userName": "张同学",
-      "answers": {
-        "q4": "错误",
-        "q2": "正确",
-        "q1": "Options API",
-        "q3": "POST"
-      },
-      "score": 50,
-      "totalScore": 100,
-      "focusWarnings": 4,
-      "startedAt": "2026-06-08T07:35:49.409Z",
-      "submittedAt": "2026-06-08T07:36:34.775Z",
-      "details": [
-        {
-          "questionId": "q1",
-          "title": "Vue 3 中用于组合逻辑复用的核心 API 是什么？",
-          "type": "choice",
-          "options": [
-            "Composition API",
-            "Options API",
-            "DOM API",
-            "Fetch API"
-          ],
-          "userAnswer": "Options API",
-          "answer": "Composition API",
-          "correct": false,
-          "score": 0,
-          "questionScore": 25,
-          "explanation": "Composition API 通过 setup、ref、computed 等能力组织可复用逻辑。"
-        },
-        {
-          "questionId": "q2",
-          "title": "Pinia 可以用于跨组件共享状态。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "正确",
-          "answer": "正确",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "Pinia 是 Vue 官方推荐的状态管理库，适合保存登录态、考试草稿等共享状态。"
-        },
-        {
-          "questionId": "q3",
-          "title": "RESTful API 中通常用于创建资源的方法是？",
-          "type": "choice",
-          "options": [
-            "GET",
-            "POST",
-            "PATCH",
-            "DELETE"
-          ],
-          "userAnswer": "POST",
-          "answer": "POST",
-          "correct": true,
-          "score": 25,
-          "questionScore": 25,
-          "explanation": "POST 常用于创建资源，GET 获取资源，PATCH 更新资源，DELETE 删除资源。"
-        },
-        {
-          "questionId": "q4",
-          "title": "localStorage 可以用于在刷新页面后保留少量草稿数据。",
-          "type": "judgement",
-          "options": [
-            "正确",
-            "错误"
-          ],
-          "userAnswer": "错误",
-          "answer": "正确",
-          "correct": false,
-          "score": 0,
-          "questionScore": 25,
-          "explanation": "localStorage 是浏览器本地持久化能力，适合保存少量非敏感草稿。"
-        }
-      ]
-    }
-  ]
+  "submissions": [],
+  "redoRequests": []
 }

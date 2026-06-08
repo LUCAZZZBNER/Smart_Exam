@@ -85,4 +85,7 @@ CSV 示例见 [exam-server/samples/questions.csv](exam-server/samples/questions.
 - `PUT /api/admin/exams/:id`：管理员编辑试卷
 - `DELETE /api/admin/exams/:id`：管理员删除试卷
 - `GET /api/admin/grades`：管理员查看成绩列表
+- `GET /api/admin/users`：管理员查看用户和班级归属
+- `POST /api/admin/users`：管理员创建学生或管理员班级
+- `DELETE /api/admin/users/:id`：管理员删除用户
 - `POST /api/admin/import`：管理员导入 JSON/Excel 试题

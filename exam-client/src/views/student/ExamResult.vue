@@ -17,7 +17,7 @@ const percent = computed(() => {
 
 async function load() {
   const id = String(route.params.id);
-  const raw = sessionStorage.getItem(`smart-exam-result-${String(route.params.id)}`);
+  const raw = sessionStorage.getItem(`smart-exam-result-${id}`);
   if (raw) {
     result.value = JSON.parse(raw);
     return;
@@ -35,8 +35,8 @@ function downloadPdf() {
   doc.text(`Student: ${result.value.userName}`, 14, 32);
   doc.text(`Exam: ${result.value.examTitle}`, 14, 40);
   doc.text(`Score: ${result.value.score}/${result.value.totalScore}`, 14, 48);
-  doc.text(`Focus warnings: ${result.value.focusWarnings}`, 14, 56);
-  doc.text(`Submitted at: ${new Date(result.value.submittedAt).toLocaleString()}`, 14, 64);
+  doc.text(`Attempt: ${result.value.attemptNo || 1}`, 14, 56);
+  doc.text(`Focus warnings: ${result.value.focusWarnings}`, 14, 64);
   let y = 78;
   result.value.details.forEach((detail, index) => {
     if (y > 270) {
@@ -62,6 +62,7 @@ onMounted(load);
         <div>
           <p class="eyebrow">自动判分完成</p>
           <h2>{{ result.examTitle }}</h2>
+          <p>班级：{{ result.classNames?.join("、") || "-" }} | 第 {{ result.attemptNo || 1 }} 次作答</p>
           <p>{{ new Date(result.submittedAt).toLocaleString() }}</p>
         </div>
         <el-progress type="dashboard" :percentage="percent">

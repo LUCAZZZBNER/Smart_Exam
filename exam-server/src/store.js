@@ -24,6 +24,7 @@ function publicExam(exam, includeQuestions = false) {
     totalScore: exam.totalScore,
     published: exam.published,
     randomize: exam.randomize,
+    classIds: exam.classIds || [],
     questionCount: exam.questions.length,
     createdAt: exam.createdAt
   };

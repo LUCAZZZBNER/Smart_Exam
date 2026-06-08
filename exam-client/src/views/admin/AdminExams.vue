@@ -8,9 +8,10 @@ import {
   createExamApi,
   deleteExamApi,
   importQuestionsApi,
+  listClassesApi,
   updateExamApi
 } from "../../api/exam";
-import type { Exam, Question } from "../../types/exam";
+import type { ClassInfo, Exam, Question } from "../../types/exam";
 
 const questionSchema = z.object({
   title: z.string().min(1),
@@ -23,11 +24,13 @@ const saving = ref(false);
 const dialogVisible = ref(false);
 const editingId = ref("");
 const exams = ref<Exam[]>([]);
+const classes = ref<ClassInfo[]>([]);
 const fileInput = ref<HTMLInputElement | null>(null);
 
 const form = reactive<Omit<Exam, "id">>({
   title: "",
   description: "",
+  classIds: [],
   duration: 30,
   totalScore: 100,
   published: true,
@@ -60,6 +63,7 @@ function resetForm() {
   Object.assign(form, {
     title: "",
     description: "",
+    classIds: classes.value[0] ? [classes.value[0].id] : [],
     duration: 30,
     totalScore: 100,
     published: true,
@@ -72,7 +76,9 @@ function resetForm() {
 async function load() {
   loading.value = true;
   try {
-    exams.value = await adminListExamsApi();
+    const [nextExams, nextClasses] = await Promise.all([adminListExamsApi(), listClassesApi()]);
+    exams.value = nextExams;
+    classes.value = nextClasses;
   } finally {
     loading.value = false;
   }
@@ -88,6 +94,7 @@ function openEdit(exam: Exam) {
   Object.assign(form, {
     title: exam.title,
     description: exam.description,
+    classIds: [...(exam.classIds || [])],
     duration: exam.duration,
     totalScore: exam.totalScore,
     published: exam.published,
@@ -114,23 +121,12 @@ function normalizeQuestion(question: Question) {
 }
 
 async function save() {
-  if (!form.title.trim()) {
-    ElMessage.warning("请输入试卷标题");
-    return;
-  }
-  if (!form.questions?.length) {
-    ElMessage.warning("至少添加一道试题");
-    return;
-  }
+  if (!form.title.trim()) return ElMessage.warning("请输入试卷标题");
+  if (!form.classIds?.length) return ElMessage.warning("请选择考试所属班级");
+  if (!form.questions?.length) return ElMessage.warning("至少添加一道试题");
   const invalid = form.questions.find((question) => !questionSchema.safeParse(question).success);
-  if (invalid) {
-    ElMessage.warning("请补全题干、答案和分值");
-    return;
-  }
-  if (questionTotal.value !== Number(form.totalScore)) {
-    ElMessage.warning("试题分值合计需要等于试卷总分");
-    return;
-  }
+  if (invalid) return ElMessage.warning("请补全题干、答案和分值");
+  if (questionTotal.value !== Number(form.totalScore)) return ElMessage.warning("试题分值合计需要等于试卷总分");
 
   saving.value = true;
   try {
@@ -178,16 +174,19 @@ onMounted(load);
     <div class="section-head">
       <div>
         <h2>试卷管理</h2>
-        <p>创建试卷、维护选择题与判断题，支持 JSON/Excel 批量导入。</p>
+        <p>考试必须归属到班级，学生只会看到自己班级下的考试。</p>
       </div>
       <el-button type="primary" :icon="Plus" @click="openCreate">新建试卷</el-button>
     </div>
 
     <el-table v-loading="loading" :data="exams" stripe>
       <el-table-column prop="title" label="试卷标题" min-width="180" />
+      <el-table-column label="所属班级" min-width="160">
+        <template #default="{ row }">{{ row.classNames?.join("、") || "-" }}</template>
+      </el-table-column>
       <el-table-column prop="duration" label="时长(分钟)" width="110" />
       <el-table-column prop="totalScore" label="总分" width="90" />
-      <el-table-column prop="questionCount" label="题数" width="90">
+      <el-table-column label="题数" width="90">
         <template #default="{ row }">{{ row.questions?.length || row.questionCount }}</template>
       </el-table-column>
       <el-table-column label="状态" width="100">
@@ -212,6 +211,11 @@ onMounted(load);
         </el-form-item>
         <el-form-item label="试卷说明">
           <el-input v-model="form.description" type="textarea" :rows="3" />
+        </el-form-item>
+        <el-form-item label="所属班级">
+          <el-select v-model="form.classIds" multiple filterable placeholder="请选择班级">
+            <el-option v-for="item in classes" :key="item.id" :label="`${item.name} - ${item.teacherName}`" :value="item.id" />
+          </el-select>
         </el-form-item>
       </el-form>
       <el-form label-position="top">
