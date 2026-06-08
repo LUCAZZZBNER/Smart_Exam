@@ -1,0 +1,26 @@
+[
+  {
+    "type": "choice",
+    "title": "Vue Router 中用于声明页面路径和组件映射的配置通常称为什么？",
+    "options": "routes|stores|plugins|directives",
+    "answer": "routes",
+    "score": 20,
+    "explanation": "Vue Router 通过 routes 数组声明路径与组件之间的映射关系。"
+  },
+  {
+    "type": "judgement",
+    "title": "考试系统中，前端不应该在获取试卷接口中拿到正确答案。",
+    "options": "正确|错误",
+    "answer": "正确",
+    "score": 20,
+    "explanation": "正确答案应保存在后端，提交后由后端自动判分。"
+  },
+  {
+    "type": "choice",
+    "title": "Pinia 中定义 store 常用的函数是？",
+    "options": "defineStore|createRouter|createApp|defineConfig",
+    "answer": "defineStore",
+    "score": 20,
+    "explanation": "Pinia 使用 defineStore 定义状态、计算属性和 actions。"
+  }
+]
